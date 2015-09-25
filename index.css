@@ -1,0 +1,82 @@
+@custom-media --viewport-big (width >= 36rem);
+
+.teaser {
+  font-size: 1rem;
+}
+
+.teaser__group-text {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(1rem*30);
+}
+
+.teaser__title {
+  font-size: var(--text-size-step-3);
+  line-height: var(--text-line-height-body-bold-on-step-3);
+  letter-spacing: var(--text-letter-spacing-body-bold-on-step-3);
+  font-weight: bold;
+  font-family: 'Halifax Bold';
+  color: var(--color-beijing);
+  order: 2;
+  margin: 0;
+}
+
+.teaser__flytitle {
+  font-size: var(--text-size-step-0);
+  line-height: var(--text-line-height-body-on-step-0);
+  font-weight: lighter;
+  font-family: 'Halifax Light';
+  color: var(--color-economist);
+  order: 1;
+  margin: 0;
+  margin-bottom: var(--grid-spacing-mouse);
+}
+
+.teaser__text {
+  font-size: var(--text-size-step-0);
+  line-height: var(--text-line-height-body-light-on-step-0);
+  font-weight: lighter;
+  font-family: 'Halifax Light';
+  color: var(--color-beijing);
+  order: 3;
+  margin-top: var(--grid-spacing-rabbit);
+}
+
+.teaser__datetime {
+  font-size: var(--text-size-step--2);
+  line-height: var(--text-line-height-body-light-on-step--2);
+  letter-spacing: var(--text-letter-spacing-body-light-on-step--2);
+  font-weight: lighter;
+  font-family: 'Halifax Light';
+  color: var(--color-moscow);
+  order: 4;
+  margin-top: var(--grid-spacing-rabbit);
+}
+
+.teaser__datetime:before {
+  content: '';
+  width: 3rem;
+  height: 0.1rem;
+  background-color: var(--color-berlin);
+  display: block;
+  margin-bottom: var(--grid-spacing-hedgehog);
+}
+
+.teaser__img {
+  min-width: 200px;
+  width: 70%;
+  margin-bottom: var(--grid-spacing-sheep);
+}
+
+@media (--viewport-big) {
+  .teaser__link {
+    display: flex;
+  }
+  .teaser__group-image {
+    margin-right: var(--grid-gutter-m);
+  }
+  .teaser__img {
+    width: 100%;
+    max-width: 15em;
+  }
+}
