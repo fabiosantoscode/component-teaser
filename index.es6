@@ -14,6 +14,10 @@ export default class Teaser extends React.Component {
       link: React.PropTypes.object,
       itemType: React.PropTypes.string,
       itemProp: React.PropTypes.string,
+      LinkComponent: React.PropTypes.oneOfType([
+        React.PropTypes.func,
+        React.PropTypes.string,
+      ]),
     };
   }
   static get defaultProps() {
@@ -51,6 +55,7 @@ export default class Teaser extends React.Component {
                 ${date.getFullYear()},
                 ${date.getHours()}:${minutes}`;
       },
+      LinkComponent: 'a',
     };
   }
   render() {
@@ -124,11 +129,12 @@ export default class Teaser extends React.Component {
 
     let content = {};
     if (this.props.link) {
-      content = (
-        <a {...this.props.link}
-          className="teaser__link"
-          itemProp="url"
-        >{groups}</a>);
+      content = React.createElement(this.props.LinkComponent, {
+        ...this.props.link,
+        className: 'teaser__link',
+        itemProp: 'url',
+        children: groups,
+      });
     } else {
       content = (
         <div className="teaser__wrapper">
