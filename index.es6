@@ -71,9 +71,7 @@ export default class Teaser extends React.Component {
       (<img {...this.props.image} itemProp="image" className="teaser__img" />) :
       null;
     groups.push((
-      <div className={imageClasses.join(' ')}
-        key={`teaser__group-image_${this.props.teaserId}`}
-      >
+      <div className={imageClasses.join(' ')} key={`group-image`}>
         {image}
       </div>));
     if (this.props.section) {
@@ -81,7 +79,7 @@ export default class Teaser extends React.Component {
         <h3
           className="teaser__section"
           itemProp="section"
-          key={`teaser__section_${this.props.teaserId}`}
+          key={`section`}
         >{this.props.section}</h3>
       ));
     }
@@ -90,7 +88,7 @@ export default class Teaser extends React.Component {
         <h2
           className="teaser__flytitle"
           itemProp="alternativeHeadline"
-          key={`teaser__flytitle_${this.props.teaserId}`}
+          key={`flytitle`}
         >{this.props.flyTitle}</h2>
       ));
     }
@@ -99,7 +97,7 @@ export default class Teaser extends React.Component {
         <h1
           className="teaser__title"
           itemProp="headline"
-          key={`teaser__title_${this.props.teaserId}`}
+          key={`title`}
         >{this.props.title}</h1>));
     }
     if (this.props.dateTime) {
@@ -108,7 +106,7 @@ export default class Teaser extends React.Component {
           className="teaser__datetime"
           itemProp="dateCreated"
           dateTime={this.props.dateTime}
-          key={`teaser__datetime_${this.props.teaserId}`}
+          key={`datetime`}
         >{this.props.dateFormat(this.props.dateTime)}</time>));
     }
     if (this.props.dateString && this.props.timestampISO) {
@@ -117,7 +115,7 @@ export default class Teaser extends React.Component {
           className="teaser__datetime"
           itemProp="dateCreated"
           dateTime={this.props.timestampISO}
-          key={`teaser__datetime`}
+          key={`datetime`}
         >{this.props.dateString}</time>));
     }
     if (this.props.text) {
@@ -125,7 +123,7 @@ export default class Teaser extends React.Component {
         <div
           className="teaser__text"
           itemProp="description"
-          key={`teaser__text_${this.props.teaserId}`}
+          key={`text`}
           /* eslint-disable react/no-danger */
           dangerouslySetInnerHTML={{
             '__html': this.props.text,
@@ -134,7 +132,7 @@ export default class Teaser extends React.Component {
     }
     groups.push((
       <div className="teaser__group-text"
-        key={`teaser__grouptext_${this.props.teaserId}`}
+        key={`grouptext`}
       >
         {teaserContent}
       </div>
