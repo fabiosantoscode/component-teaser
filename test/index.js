@@ -1,9 +1,11 @@
 import 'babel-polyfill';
 import React from 'react';
 import Teaser from '../src';
-import TestUtils from 'react-addons-test-utils';
 import chai from 'chai';
+import chaiEnzyme from 'chai-enzyme';
+import { mount } from 'enzyme';
 chai.should();
+chai.use(chaiEnzyme());
 
 describe('A teaser', () => {
   describe('it\'s a React component', () => {
@@ -19,108 +21,107 @@ describe('A teaser', () => {
   });
   describe('Expose a set of propTypes', () => {
     it('it renders a section', () => {
-      const teaser = TestUtils.renderIntoDocument(
+      const teaser = mount(
         <Teaser
           section="section"
           title="Required"
         />
       );
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-      teaser, 'teaser__section');
-      elm.props.className.should.be.equal('teaser__section');
-      elm.props.children.should.be.equal('section');
+      teaser.should.have.exactly(1).descendants('.teaser__section');
+      const sectionNode = teaser.find('.teaser__section');
+      sectionNode.should.have.text('section');
+      sectionNode.should.have.tagName('h3');
     });
     it('it renders a flytitle', () => {
-      const teaser = TestUtils.renderIntoDocument(
+      const teaser = mount(
         <Teaser
           flyTitle="flytitle"
           title="Required"
         />
       );
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-      teaser, 'teaser__flytitle');
-      elm.props.className.should.be.equal('teaser__flytitle');
-      elm.props.children.should.be.equal('flytitle');
+      teaser.should.have.exactly(1).descendants('.teaser__flytitle');
+      const flyTitleNode = teaser.find('.teaser__flytitle');
+      flyTitleNode.should.have.text('flytitle');
+      flyTitleNode.should.have.tagName('h2');
     });
     it('it renders a title', () => {
-      const teaser = TestUtils.renderIntoDocument(
-        <Teaser title="title" />
-      );
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-      teaser, 'teaser__title');
-      elm.props.className.should.be.equal('teaser__title');
-      elm.props.children.should.be.equal('title');
+      const teaser = mount(<Teaser title="title" />);
+      teaser.should.have.exactly(1).descendants('.teaser__title');
+      const titleNode = teaser.find('.teaser__title');
+      titleNode.should.have.text('title');
+      titleNode.should.have.tagName('h1');
     });
     it('it renders a dateTime', () => {
       const today = new Date();
       function dateFormat(date) {
         return date.toString();
       }
-      const teaser = TestUtils.renderIntoDocument(
+      const teaser = mount(
         <Teaser
           dateTime={today}
           title="Required"
           dateFormat={dateFormat}
         />
       );
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-      teaser, 'teaser__datetime');
-      elm.props.className.should.be.equal('teaser__datetime');
-      elm.props.children.should.be.equal(today.toString());
+      teaser.should.have.exactly(1).descendants('.teaser__datetime');
+      const dateTimeNode = teaser.find('.teaser__datetime');
+      dateTimeNode.should.have.text(today.toString());
+      dateTimeNode.should.have.tagName('time');
+      dateTimeNode.should.have.attr('datetime', today.toString());
     });
     it('renders a dateString and an ISO timestamp', () => {
       const today = 'someday';
       const todayISO = 'somedayISO';
-      const teaser = TestUtils.renderIntoDocument(
+      const teaser = mount(
         <Teaser
           title="Required"
           dateString={today}
           timestampISO={todayISO}
         />
       );
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-        teaser, 'teaser__datetime');
-      elm.props.children.should.equal('someday');
-      elm.props.dateTime.should.equal('somedayISO');
+      teaser.should.have.exactly(1).descendants('.teaser__datetime');
+      const dateTimeNode = teaser.find('.teaser__datetime');
+      dateTimeNode.should.have.tagName('time');
+      dateTimeNode.should.have.text('someday');
+      dateTimeNode.should.have.attr('datetime', 'somedayISO');
     });
     it('it renders a text', () => {
-      const teaser = TestUtils.renderIntoDocument(
+      const teaser = mount(
         <Teaser
           text="Teaser text"
           title="Required"
         />
       );
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-      teaser, 'teaser__text');
-      elm.props.className.should.be.equal('teaser__text');
-      /* eslint-disable dot-notation */
-      elm.props.dangerouslySetInnerHTML['__html'].should.be.equal('Teaser text');
+      teaser.should.have.exactly(1).descendants('.teaser__text');
+      const textNode = teaser.find('.teaser__text');
+      textNode.should.have.text('Teaser text');
+      textNode.should.have.tagName('div');
     });
     it('it renders an image', () => {
       const img = {
         src: '//cdn.static-economist.com/sites/all/themes/econfinal/images/svg/logo.svg',
         alt: 'Example',
       };
-      const teaser = TestUtils.renderIntoDocument(
+      const teaser = mount(
         <Teaser image={img}
           title="Required"
         />);
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-      teaser, 'teaser__img');
-      elm.props.className.should.be.equal('teaser__img');
-      elm.props.src.should.be.equal('//cdn.static-economist.com/sites/all/themes/econfinal/images/svg/logo.svg');
-      elm.props.alt.should.be.equal('Example');
+      teaser.should.have.exactly(1).descendants('.teaser__img');
+      const imgNode = teaser.find('.teaser__img');
+      imgNode.should.have.tagName('img');
+      imgNode.should.have.attr('src', img.src);
+      imgNode.should.have.attr('alt', img.alt);
     });
     it('it renders a link', () => {
-      const teaser = TestUtils.renderIntoDocument(
+      const teaser = mount(
         <Teaser
           link={{ href: 'http://www.economist.com' }}
           title="Required"
         />);
-      const elm = TestUtils.findRenderedDOMComponentWithClass(
-      teaser, 'teaser__link');
-      elm.props.className.should.be.equal('teaser__link');
-      elm.props.href.should.be.equal('http://www.economist.com');
+      teaser.should.have.exactly(1).descendants('.teaser__link');
+      const linkNode = teaser.find('.teaser__link');
+      linkNode.should.have.attr('href', 'http://www.economist.com');
+      linkNode.should.have.tagName('a');
     });
   });
 });
