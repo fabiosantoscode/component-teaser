@@ -1,21 +1,24 @@
-import Teaser from '../index.es6';
+import 'babel-polyfill';
 import React from 'react';
+import Teaser from '../src';
 import TestUtils from 'react-addons-test-utils';
+import chai from 'chai';
+chai.should();
 
-describe(`A teaser`, () => {
-  describe(`it's a React component`, () => {
+describe('A teaser', () => {
+  describe('it\'s a React component', () => {
     it('is compatible with React.Component', () => {
       Teaser.should.be.a('function').and.respondTo('render');
     });
-    it(`it's renders a React element`, () => {
+    it('it\'s renders a React element', () => {
       React.isValidElement(
         <Teaser
           title="Required"
         />).should.equal(true);
     });
   });
-  describe(`Expose a set of propTypes`, () => {
-    it(`it renders a section`, () => {
+  describe('Expose a set of propTypes', () => {
+    it('it renders a section', () => {
       const teaser = TestUtils.renderIntoDocument(
         <Teaser
           section="section"
@@ -27,7 +30,7 @@ describe(`A teaser`, () => {
       elm.props.className.should.be.equal('teaser__section');
       elm.props.children.should.be.equal('section');
     });
-    it(`it renders a flytitle`, () => {
+    it('it renders a flytitle', () => {
       const teaser = TestUtils.renderIntoDocument(
         <Teaser
           flyTitle="flytitle"
@@ -39,7 +42,7 @@ describe(`A teaser`, () => {
       elm.props.className.should.be.equal('teaser__flytitle');
       elm.props.children.should.be.equal('flytitle');
     });
-    it(`it renders a title`, () => {
+    it('it renders a title', () => {
       const teaser = TestUtils.renderIntoDocument(
         <Teaser title="title" />
       );
@@ -48,7 +51,7 @@ describe(`A teaser`, () => {
       elm.props.className.should.be.equal('teaser__title');
       elm.props.children.should.be.equal('title');
     });
-    it(`it renders a dateTime`, () => {
+    it('it renders a dateTime', () => {
       const today = new Date();
       function dateFormat(date) {
         return date.toString();
@@ -65,7 +68,7 @@ describe(`A teaser`, () => {
       elm.props.className.should.be.equal('teaser__datetime');
       elm.props.children.should.be.equal(today.toString());
     });
-    it(`renders a dateString and an ISO timestamp`, () => {
+    it('renders a dateString and an ISO timestamp', () => {
       const today = 'someday';
       const todayISO = 'somedayISO';
       const teaser = TestUtils.renderIntoDocument(
@@ -80,7 +83,7 @@ describe(`A teaser`, () => {
       elm.props.children.should.equal('someday');
       elm.props.dateTime.should.equal('somedayISO');
     });
-    it(`it renders a text`, () => {
+    it('it renders a text', () => {
       const teaser = TestUtils.renderIntoDocument(
         <Teaser
           text="Teaser text"
@@ -93,10 +96,10 @@ describe(`A teaser`, () => {
       /* eslint-disable dot-notation */
       elm.props.dangerouslySetInnerHTML['__html'].should.be.equal('Teaser text');
     });
-    it(`it renders an image`, () => {
+    it('it renders an image', () => {
       const img = {
-        src: `//cdn.static-economist.com/sites/all/themes/econfinal/images/svg/logo.svg`,
-        alt: `Example`,
+        src: '//cdn.static-economist.com/sites/all/themes/econfinal/images/svg/logo.svg',
+        alt: 'Example',
       };
       const teaser = TestUtils.renderIntoDocument(
         <Teaser image={img}
@@ -108,10 +111,10 @@ describe(`A teaser`, () => {
       elm.props.src.should.be.equal('//cdn.static-economist.com/sites/all/themes/econfinal/images/svg/logo.svg');
       elm.props.alt.should.be.equal('Example');
     });
-    it(`it renders a link`, () => {
+    it('it renders a link', () => {
       const teaser = TestUtils.renderIntoDocument(
         <Teaser
-          link={{ href: `http://www.economist.com` }}
+          link={{ href: 'http://www.economist.com' }}
           title="Required"
         />);
       const elm = TestUtils.findRenderedDOMComponentWithClass(

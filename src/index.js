@@ -22,6 +22,7 @@ export default class Teaser extends React.Component {
     };
   }
   static get defaultProps() {
+    const tenMinutes = 10;
     return {
       itemType: 'http://schema.org/Article',
       itemProp: 'article',
@@ -45,16 +46,16 @@ export default class Teaser extends React.Component {
               postFix = 'th';
               break;
           }
-          return `${day}${postFix}`;
+          return `${ day }${ postFix }`;
         }
         const shortMonthList = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
-        let minutes = date.getMinutes() < 10 ? '0' : '';
+        let minutes = date.getMinutes() < tenMinutes ? '0' : '';
         minutes += date.getMinutes();
-        return `${shortMonthList[date.getMonth()]}
-                ${addPostFix(date.getDate())}
-                ${date.getFullYear()},
-                ${date.getHours()}:${minutes}`;
+        return `${ shortMonthList[date.getMonth()] }
+                ${ addPostFix(date.getDate()) }
+                ${ date.getFullYear() },
+                ${ date.getHours() }:${ minutes }`;
       },
     };
   }
@@ -62,15 +63,15 @@ export default class Teaser extends React.Component {
     const teaserContent = [];
     const groups = [];
     const imageSrc = this.props.image && this.props.image.src;
-    let imageClasses = ['teaser__group-image'];
+    let imageClasses = [ 'teaser__group-image' ];
     if (!imageSrc) {
-      imageClasses = imageClasses.concat(['teaser__group-image--empty']);
+      imageClasses = imageClasses.concat([ 'teaser__group-image--empty' ]);
     }
     const image = imageSrc ?
       (<img {...this.props.image} itemProp="image" className="teaser__img" />) :
       null;
     groups.push((
-      <div className={imageClasses.join(' ')} key={`group-image`}>
+      <div className={imageClasses.join(' ')} key="group-image">
         {image}
       </div>));
     if (this.props.section) {
@@ -78,7 +79,7 @@ export default class Teaser extends React.Component {
         <h3
           className="teaser__section"
           itemProp="section"
-          key={`section`}
+          key="section"
         >{this.props.section}</h3>
       ));
     }
@@ -87,7 +88,7 @@ export default class Teaser extends React.Component {
         <h2
           className="teaser__flytitle"
           itemProp="alternativeHeadline"
-          key={`flytitle`}
+          key="flytitle"
         >{this.props.flyTitle}</h2>
       ));
     }
@@ -96,7 +97,7 @@ export default class Teaser extends React.Component {
         <h1
           className="teaser__title"
           itemProp="headline"
-          key={`title`}
+          key="title"
         >{this.props.title}</h1>));
     }
     if (this.props.dateTime) {
@@ -105,7 +106,7 @@ export default class Teaser extends React.Component {
           className="teaser__datetime"
           itemProp="dateCreated"
           dateTime={this.props.dateTime}
-          key={`datetime`}
+          key="datetime"
         >{this.props.dateFormat(this.props.dateTime)}</time>));
     }
     if (this.props.dateString && this.props.timestampISO) {
@@ -114,7 +115,7 @@ export default class Teaser extends React.Component {
           className="teaser__datetime"
           itemProp="dateCreated"
           dateTime={this.props.timestampISO}
-          key={`datetime`}
+          key="datetime"
         >{this.props.dateString}</time>));
     }
     if (this.props.text) {
@@ -122,7 +123,7 @@ export default class Teaser extends React.Component {
         <div
           className="teaser__text"
           itemProp="description"
-          key={`text`}
+          key="text"
           /* eslint-disable react/no-danger */
           dangerouslySetInnerHTML={{
             '__html': this.props.text,
@@ -131,7 +132,7 @@ export default class Teaser extends React.Component {
     }
     groups.push((
       <div className="teaser__group-text"
-        key={`grouptext`}
+        key="grouptext"
       >
         {teaserContent}
       </div>
