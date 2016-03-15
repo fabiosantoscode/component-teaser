@@ -11,7 +11,6 @@ describe(`A teaser`, () => {
       React.isValidElement(
         <Teaser
           title="Required"
-          teaserId={'1'}
         />).should.equal(true);
     });
   });
@@ -21,7 +20,6 @@ describe(`A teaser`, () => {
         <Teaser
           section="section"
           title="Required"
-          teaserId={'1'}
         />
       );
       const elm = TestUtils.findRenderedDOMComponentWithClass(
@@ -34,7 +32,6 @@ describe(`A teaser`, () => {
         <Teaser
           flyTitle="flytitle"
           title="Required"
-          teaserId={'1'}
         />
       );
       const elm = TestUtils.findRenderedDOMComponentWithClass(
@@ -44,7 +41,7 @@ describe(`A teaser`, () => {
     });
     it(`it renders a title`, () => {
       const teaser = TestUtils.renderIntoDocument(
-        <Teaser title="title" teaserId={'1'}/>
+        <Teaser title="title" />
       );
       const elm = TestUtils.findRenderedDOMComponentWithClass(
       teaser, 'teaser__title');
@@ -60,7 +57,6 @@ describe(`A teaser`, () => {
         <Teaser
           dateTime={today}
           title="Required"
-          teaserId={'1'}
           dateFormat={dateFormat}
         />
       );
@@ -75,7 +71,6 @@ describe(`A teaser`, () => {
       const teaser = TestUtils.renderIntoDocument(
         <Teaser
           title="Required"
-          teaserId={'1'}
           dateString={today}
           timestampISO={todayISO}
         />
@@ -90,7 +85,6 @@ describe(`A teaser`, () => {
         <Teaser
           text="Teaser text"
           title="Required"
-          teaserId={'1'}
         />
       );
       const elm = TestUtils.findRenderedDOMComponentWithClass(
@@ -107,7 +101,6 @@ describe(`A teaser`, () => {
       const teaser = TestUtils.renderIntoDocument(
         <Teaser image={img}
           title="Required"
-          teaserId={'1'}
         />);
       const elm = TestUtils.findRenderedDOMComponentWithClass(
       teaser, 'teaser__img');
@@ -120,7 +113,6 @@ describe(`A teaser`, () => {
         <Teaser
           link={{ href: `http://www.economist.com` }}
           title="Required"
-          teaserId={'1'}
         />);
       const elm = TestUtils.findRenderedDOMComponentWithClass(
       teaser, 'teaser__link');
