@@ -1,18 +1,17 @@
 @import '@economist/component-typography';
 @import '@economist/component-palette';
 @import '@economist/component-grid';
-
 @custom-media --viewport-big (width >= 44rem);
 
 .teaser {
-  font-size: 1rem;
   overflow: hidden;
-  font-family: var(--teaser__font-family,  var(--fontfamily-sans));
+  font-family: var(--teaser__font-family, var(--fontfamily-sans));
+  font-size: 1rem;
 }
 
 .teaser__link {
-  text-decoration: none;
   display: block;  /* not an inline element either. */
+  text-decoration: none;
 }
 
 .teaser__group-text {
@@ -21,70 +20,70 @@
 }
 
 .teaser__title {
-  font-family: var(--teaser__title-font-family,  var(--fontfamily-serif));
-  font-size: var(--text-size-step-2);
-  line-height: var(--text-line-height-serif-medium-on-step-2);
-  letter-spacing: var(--text-letter-spacing-serif-medium-on-step-2);
-  font-weight: normal;
-  color: var(--teaser-color-title, var(--color-beijing));
-  order: 3;
   margin: 0;
   margin-bottom: var(--grid-spacing-rabbit);
+  order: 3;
+  color: var(--teaser-color-title, var(--color-beijing));
+  font-family: var(--teaser__title-font-family, var(--fontfamily-serif));
+  font-size: var(--text-size-step-2);
+  font-weight: normal;
+  letter-spacing: var(--text-letter-spacing-serif-medium-on-step-2);
+  line-height: var(--text-line-height-serif-medium-on-step-2);
 }
 
 .teaser__section {
-  font-size: var(--text-size-step--2);
-  line-height: var(--text-line-height-sans-on-step--2);
-  text-transform: uppercase;
-  font-weight: 300;
-  color: var(--teaser-color-section, var(--color-economist));
-  order: 1;
   margin: 0;
   margin-bottom: var(--grid-spacing-mouse);
+  order: 1;
+  color: var(--teaser-color-section, var(--color-economist));
+  font-size: var(--text-size-step--2);
+  font-weight: 300;
+  line-height: var(--text-line-height-sans-on-step--2);
+  text-transform: uppercase;
 }
 
 .teaser__flytitle {
-  font-size: var(--text-size-step--1);
-  line-height: var(--text-line-height-sans-on-step--1);
-  font-weight: normal;
-  color: var(--teaser-color-flytitle, var(--color-economist));
-  order: 2;
   margin: 0;
   margin-bottom: var(--grid-spacing-mouse);
+  order: 2;
+  color: var(--teaser-color-flytitle, var(--color-economist));
+  font-size: var(--text-size-step--1);
+  font-weight: normal;
+  line-height: var(--text-line-height-sans-on-step--1);
 }
 
 .teaser__text {
-  font-size: var(--text-size-step--2);
-  line-height: var(--text-line-height-sans-light-on-step--2);
-  font-weight: 300;
-  color: var(--teaser-color-text, var(--color-beijing));
-  order: 4;
   margin-bottom: var(--grid-spacing-rabbit);
+  order: 4;
+  color: var(--teaser-color-text, var(--color-beijing));
+  font-size: var(--text-size-step--2);
+  font-weight: 300;
+  line-height: var(--text-line-height-sans-light-on-step--2);
 }
 
 .teaser__datetime {
-  font-size: var(--text-size-step--4);
-  line-height: var(--text-line-height-basic);
-  letter-spacing: var(--text-letter-spacing-sans-light-on-step--2);
-  font-weight: 300;
-  color: var(--teaser-color-datetime, var(--color-moscow));
   order: 5;
+  color: var(--teaser-color-datetime, var(--color-moscow));
+  font-size: var(--text-size-step--4);
+  font-weight: 300;
+  letter-spacing: var(--text-letter-spacing-sans-light-on-step--2);
+  line-height: var(--text-line-height-basic);
 }
 
-.teaser__datetime:before {
+.teaser__datetime::before {
   content: '';
+  display: block;
   width: 3rem;
   height: 0.1rem;
-  background-color: var(--teaser-background-color-datetime, var(--color-berlin));
-  display: block;
   margin-bottom: var(--grid-spacing-hedgehog);
+  background-color: var(--teaser-background-color-datetime, var(--color-berlin));
 }
 
 .teaser__img {
+  display: block;  /* Makes sure that the image doesn't have an em box. */
   width: 100%;
   margin-bottom: var(--grid-spacing-sheep);
   border: none;
-  display: block;  /* Makes sure that the image doesn't have an em box. */
 }
 
 .teaser__group-image {
@@ -100,10 +99,9 @@
     float: left;
     margin-right: var(--grid-gutter-m);
   }
-
   .teaser__group-image--empty {
-    display: block;
     visibility: hidden;
+    display: block;
     min-height: var(--grid-gutter-m, 1px);  /* Because if its height is zero it doesn't push group-text to the right */
   }
 }

@@ -6,8 +6,8 @@ export default (
   <div>
     <Teaser
       image={{
-        src: `http://cdn.static-economist.com/sites/default/files/imagecache/full-width/20151017_BLP560.jpg`,
-        title: `Just an image`,
+        src: 'http://cdn.static-economist.com/sites/default/files/imagecache/full-width/20151017_BLP560.jpg',
+        title: 'Just an image',
       }}
       section="International"
       flyTitle="The UN, religion and development"
@@ -20,7 +20,7 @@ export default (
       are simply too numerous. As the French statesman Georges Clemenceau
       for a new world order, were enough for the good Lord."
       link={{
-        href: `http://www.economist.com/blogs/erasmus/2015/09/un-religion-and-development-0`,
+        href: 'http://www.economist.com/blogs/erasmus/2015/09/un-religion-and-development-0',
       }}
       itemType="http://schema.org/BlogPosting"
       itemProp="blogPost"
