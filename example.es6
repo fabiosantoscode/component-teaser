@@ -24,7 +24,6 @@ export default (
       }}
       itemType="http://schema.org/BlogPosting"
       itemProp="blogPost"
-      teaserId={"100092"}
     />
   </div>
 );

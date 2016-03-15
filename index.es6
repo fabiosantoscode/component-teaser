@@ -3,7 +3,6 @@ import React from 'react';
 export default class Teaser extends React.Component {
   static get propTypes() {
     return {
-      teaserId: React.PropTypes.string.isRequired,
       image: React.PropTypes.shape({
         src: React.PropTypes.string,
       }),
