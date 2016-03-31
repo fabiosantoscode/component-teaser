@@ -17,6 +17,7 @@ export default class Teaser extends React.Component {
       link: React.PropTypes.shape({
         href: React.PropTypes.string,
       }),
+      renderLink: React.PropTypes.func,
       itemType: React.PropTypes.string,
       itemProp: React.PropTypes.string,
     };
@@ -140,11 +141,12 @@ export default class Teaser extends React.Component {
 
     let content = {};
     if (this.props.link) {
+      const LinkComponent = this.props.renderLink || 'a';
       content = (
-        <a {...this.props.link}
+        <LinkComponent {...this.props.link}
           className="teaser__link"
           itemProp="url"
-        >{groups}</a>);
+        >{groups}</LinkComponent>);
     } else {
       content = (
         <div className="teaser__wrapper">
