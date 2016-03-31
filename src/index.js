@@ -68,13 +68,12 @@ export default class Teaser extends React.Component {
           className="teaser__link"
           itemProp="url"
         >{groups}</LinkComponent>);
-    } else {
-      return (
-        <div className="teaser__wrapper">
-          {groups}
-        </div>
-      );
     }
+    return (
+      <div className="teaser__wrapper">
+        {groups}
+      </div>
+    );
   }
   render() {
     const teaserContent = [];
