@@ -60,6 +60,22 @@ export default class Teaser extends React.Component {
       },
     };
   }
+  wrapGroupsInLink(groups) {
+    if (this.props.link) {
+      const LinkComponent = this.props.renderLink || 'a';
+      return (
+        <LinkComponent {...this.props.link}
+          className="teaser__link"
+          itemProp="url"
+        >{groups}</LinkComponent>);
+    } else {
+      return (
+        <div className="teaser__wrapper">
+          {groups}
+        </div>
+      );
+    }
+  }
   render() {
     const teaserContent = [];
     const groups = [];
@@ -138,22 +154,7 @@ export default class Teaser extends React.Component {
         {teaserContent}
       </div>
     ));
-
-    let content = {};
-    if (this.props.link) {
-      const LinkComponent = this.props.renderLink || 'a';
-      content = (
-        <LinkComponent {...this.props.link}
-          className="teaser__link"
-          itemProp="url"
-        >{groups}</LinkComponent>);
-    } else {
-      content = (
-        <div className="teaser__wrapper">
-          {groups}
-        </div>
-      );
-    }
+    const content = this.wrapGroupsInLink(groups);
     return (
       <article
         className="teaser"
