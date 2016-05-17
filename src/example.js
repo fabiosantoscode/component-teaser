@@ -24,6 +24,7 @@ export default (
       }}
       itemType="http://schema.org/BlogPosting"
       itemProp="blogPost"
+      extraGroupText={(<em className="example-extra">You can add extra items to the text group</em>)}
     />
   </div>
 );

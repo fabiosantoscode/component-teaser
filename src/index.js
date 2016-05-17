@@ -3,9 +3,7 @@ import React from 'react';
 export default class Teaser extends React.Component {
   static get propTypes() {
     return {
-      image: React.PropTypes.shape({
-        src: React.PropTypes.string,
-      }),
+      mainImage: React.PropTypes.string,
       section: React.PropTypes.string,
       flyTitle: React.PropTypes.string,
       title: React.PropTypes.string.isRequired,
@@ -13,7 +11,8 @@ export default class Teaser extends React.Component {
       dateString: React.PropTypes.string,
       timestampISO: React.PropTypes.string,
       dateFormat: React.PropTypes.func,
-      text: React.PropTypes.string,
+      text: React.PropTypes.node,
+      extraGroupText: React.PropTypes.node,
       link: React.PropTypes.shape({
         href: React.PropTypes.string,
       }),
@@ -78,13 +77,12 @@ export default class Teaser extends React.Component {
   render() {
     const teaserContent = [];
     const groups = [];
-    const imageSrc = this.props.image && this.props.image.src;
     let imageClasses = [ 'teaser__group-image' ];
-    if (!imageSrc) {
+    if (!this.props.mainImage) {
       imageClasses = imageClasses.concat([ 'teaser__group-image--empty' ]);
     }
-    const image = imageSrc ?
-      (<img {...this.props.image} itemProp="image" className="teaser__img" />) :
+    const image = this.props.mainImage ?
+      (<img {...this.props.mainImage} itemProp="image" className="teaser__img" />) :
       null;
     groups.push((
       <div className={imageClasses.join(' ')} key="group-image">
@@ -140,17 +138,17 @@ export default class Teaser extends React.Component {
           className="teaser__text"
           itemProp="description"
           key="text"
-          /* eslint-disable react/no-danger */
-          dangerouslySetInnerHTML={{
-            '__html': this.props.text,
-          }}
-        />));
+        >
+          {this.props.text}
+        </div>
+      ));
     }
     groups.push((
       <div className="teaser__group-text"
         key="grouptext"
       >
         {teaserContent}
+        {this.props.extraGroupText}
       </div>
     ));
     const content = this.wrapGroupsInLink(groups);
