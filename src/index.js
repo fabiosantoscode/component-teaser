@@ -6,6 +6,7 @@ export default class Teaser extends React.Component {
       image: React.PropTypes.shape({
         src: React.PropTypes.string,
       }),
+      className: React.PropTypes.string,
       section: React.PropTypes.string,
       flyTitle: React.PropTypes.string,
       title: React.PropTypes.string.isRequired,
@@ -155,9 +156,13 @@ export default class Teaser extends React.Component {
       </div>
     ));
     const content = this.wrapGroupsInLink(groups);
+    let classNames = [ 'teaser' ];
+    if (this.props.className) {
+      classNames = classNames.concat(this.props.className);
+    }
     return (
       <article
-        className="teaser"
+        className={classNames.join(' ')}
         itemScope itemType={this.props.itemType} itemProp={this.props.itemProp}
         role="article"
       >{content}</article>
