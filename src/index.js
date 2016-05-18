@@ -3,7 +3,9 @@ import React from 'react';
 export default class Teaser extends React.Component {
   static get propTypes() {
     return {
-      mainImage: React.PropTypes.string,
+      image: React.PropTypes.shape({
+        src: React.PropTypes.string,
+      }),
       section: React.PropTypes.string,
       flyTitle: React.PropTypes.string,
       title: React.PropTypes.string.isRequired,
@@ -77,12 +79,13 @@ export default class Teaser extends React.Component {
   render() {
     const teaserContent = [];
     const groups = [];
+    const imageSrc = this.props.image && this.props.image.src;
     let imageClasses = [ 'teaser__group-image' ];
-    if (!this.props.mainImage) {
+    if (!imageSrc) {
       imageClasses = imageClasses.concat([ 'teaser__group-image--empty' ]);
     }
-    const image = this.props.mainImage ?
-      (<img {...this.props.mainImage} itemProp="image" className="teaser__img" />) :
+    const image = imageSrc ?
+      (<img {...this.props.image} itemProp="image" className="teaser__img" />) :
       null;
     groups.push((
       <div className={imageClasses.join(' ')} key="group-image">
